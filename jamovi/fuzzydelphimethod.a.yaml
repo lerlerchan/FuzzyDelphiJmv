@@ -11,9 +11,11 @@ options:
       description:
         R: the data as a data frame
 
-   # - name: dep
-  #    title: Dependent Variable
-  #    type: Variable
+    - name: deps
+      title: Dependent Variables
+      type: Variables
+      description:
+        R: the item in dataframe
 
   #  - name: group
    #   title: Grouping Variable

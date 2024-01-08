@@ -6,6 +6,7 @@ FuzzyDelphiMethodOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
+            deps = NULL,
             alt = "notequal",
             varEq = TRUE, ...) {
 
@@ -15,6 +16,9 @@ FuzzyDelphiMethodOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
                 requiresData=TRUE,
                 ...)
 
+            private$..deps <- jmvcore::OptionVariables$new(
+                "deps",
+                deps)
             private$..alt <- jmvcore::OptionList$new(
                 "alt",
                 alt,
@@ -28,13 +32,16 @@ FuzzyDelphiMethodOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
                 varEq,
                 default=TRUE)
 
+            self$.addOption(private$..deps)
             self$.addOption(private$..alt)
             self$.addOption(private$..varEq)
         }),
     active = list(
+        deps = function() private$..deps$value,
         alt = function() private$..alt$value,
         varEq = function() private$..varEq$value),
     private = list(
+        ..deps = NA,
         ..alt = NA,
         ..varEq = NA)
 )
@@ -81,6 +88,7 @@ FuzzyDelphiMethodBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cl
 #'
 #' 
 #' @param data the data as a data frame
+#' @param deps the item in dataframe
 #' @param alt .
 #' @param varEq .
 #' @return A results object containing:
@@ -91,18 +99,22 @@ FuzzyDelphiMethodBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cl
 #' @export
 FuzzyDelphiMethod <- function(
     data,
+    deps,
     alt = "notequal",
     varEq = TRUE) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("FuzzyDelphiMethod requires jmvcore to be installed (restart may be required)")
 
+    if ( ! missing(deps)) deps <- jmvcore::resolveQuo(jmvcore::enquo(deps))
     if (missing(data))
         data <- jmvcore::marshalData(
-            parent.frame())
+            parent.frame(),
+            `if`( ! missing(deps), deps, NULL))
 
 
     options <- FuzzyDelphiMethodOptions$new(
+        deps = deps,
         alt = alt,
         varEq = varEq)
 
