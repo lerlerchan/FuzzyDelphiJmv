@@ -1,0 +1,11 @@
+---
+name:  FuzzyDelphiMethod
+title: Fuzzy Delphi Method
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Fuzzy Delphi Method
+      type:  Preformatted
+
+...
