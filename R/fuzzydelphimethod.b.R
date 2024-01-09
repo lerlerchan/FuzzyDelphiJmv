@@ -134,9 +134,9 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           
           # Print the rounded result data frame
          # print(rounded_dataframe)
-         self$results$text$setContent(rounded_dataframe)
-         resultList <-  self$results$fuzzydelphimethod
-         table$setRow(rowNo=15, resultList)
+        # self$results$text$setContent(rounded_dataframe)
+       
+        # table$setRow(rowNo=15, resultList)
 
           
           #column Means of each fuzzy scale
@@ -261,6 +261,8 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           
           # Print the resulting dataframe
           print(ranked_df)
+         # self$results$text$setContent(ranked_df)
+          
           
 
         })
