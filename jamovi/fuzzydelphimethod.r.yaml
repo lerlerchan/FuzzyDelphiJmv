@@ -7,5 +7,14 @@ items:
     - name:  text
       title: Fuzzy Delphi Method
       type:  Preformatted
+    - name: FuzzyDelphiMethod
+      title: Fuzzy Delphi Method
+      type:  Table
+      rows: 15
+      columns:
+      - name: var
+        title: ''
+        type: text
+        content: ($key)
 
 ...

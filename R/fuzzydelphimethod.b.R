@@ -6,13 +6,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
     inherit = FuzzyDelphiMethodBase,
     private = list(
         .run = function() {
-          #formula <- jmvcore::constructFormula(self$options$dep, self$options$group)
-          #formula <- as.formula(formula)
-          
-          #results <- t.test(formula, self$data)
-          
-          #self$results$text$setContent(results)
-          
+          # Function to match Likert scale responses to m values          
           #fuzzy set of likert 5
           likert5_data <- data.frame(
             r = c(1, 2, 3, 4, 5),
@@ -20,12 +14,30 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
             m2 = c(0, 0.2, 0.4, 0.6, 0.8),
             m3 = c(0.2, 0.4, 0.6, 0.8, 1)
           )
+
+          #fuzzy set of likert 7
+          likert7_data <- data.frame(
+            r = c(1, 2, 3, 4, 5, 6, 7),
+            m1 = c(0, 0, 0, 0.2, 0.4, 0.6, 0.8),
+            m2 = c(0, 0.2, 0.4, 0.6, 0.8, 1, 1),
+            m3 = c(0.2, 0.4, 0.6, 0.8, 1, 1, 1)
+          )
           
-          # Function to match Likert scale responses to m values
+          # Function to match Likert5 scale responses to m values
           likert5_to_m <- function(response){
             index <- match(response, likert5_data$r)
             if (!is.na(index)) {
               return(likert5_data[index, c("m1", "m2", "m3")])
+            } else {
+              return(NA)
+            }
+          }
+
+          # Function to match Likert7 scale responses to m values
+          likert7_to_m <- function(response){
+            index <- match(response, likert7_data$r)
+            if (!is.na(index)) {
+              return(likert7_data[index, c("m1", "m2", "m3")])
             } else {
               return(NA)
             }
@@ -39,7 +51,14 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
            # return()
           
           data <- self$data
-        #  data[[self$options$dependent]] <- jmvcore::toNumeric(data[[self$options$dependent]])
+        #  data[[self$options$dependent]] <-
+        #  jmvcore::toNumeric(data[[self$options$dependent]])
+        likertVar <- self$options$likertVar
+        if(likertVar == "Likert5"){
+          likertToM <- likert5_to_m
+        }else{
+          likertToM <- likert7_to_m
+        }
           
           # Get the column names
           column_names <- names(data)
@@ -48,7 +67,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           
           # Apply the function to each column
           for (col_name in column_names) {
-            matched_values <- lapply(data[[col_name]], likert5_to_m)
+            matched_values <- lapply(data[[col_name]], likertToM)
             matched_values_list[[col_name]] <- do.call(rbind, matched_values)
           }
           
@@ -114,13 +133,18 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           rounded_dataframe <- round(final_result_df,1)
           
           # Print the rounded result data frame
-          print(rounded_dataframe)
-          self$results$text$setContent(rounded_dataframe)
+         # print(rounded_dataframe)
+         self$results$text$setContent(rounded_dataframe)
+         resultList <-  self$results$fuzzydelphimethod
+         table$setRow(rowNo=15, resultList)
+
           
           #column Means of each fuzzy scale
           colMeansFuzzyScale <- colMeans(final_result_df)
           colMeansFuzzyScale <- round(colMeansFuzzyScale,2)
-          print(colMeansFuzzyScale)
+          #print(colMeansFuzzyScale)
+          #self$results$text$setContent(colMeansFuzzyScale)
+          
           
           # Calculate the mean of total
           dConstruct <- mean(colMeansFuzzyScale, na.rm = TRUE)
@@ -238,8 +262,6 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           # Print the resulting dataframe
           print(ranked_df)
           
-          
-          
-          
+
         })
 )

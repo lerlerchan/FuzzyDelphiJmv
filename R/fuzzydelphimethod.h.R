@@ -7,8 +7,7 @@ FuzzyDelphiMethodOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
     public = list(
         initialize = function(
             deps = NULL,
-            alt = "notequal",
-            varEq = TRUE, ...) {
+            likertVar = "likertFive", ...) {
 
             super$initialize(
                 package="FuzzyDelphiJmv",
@@ -19,38 +18,31 @@ FuzzyDelphiMethodOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
             private$..deps <- jmvcore::OptionVariables$new(
                 "deps",
                 deps)
-            private$..alt <- jmvcore::OptionList$new(
-                "alt",
-                alt,
+            private$..likertVar <- jmvcore::OptionList$new(
+                "likertVar",
+                likertVar,
                 options=list(
-                    "notequal",
-                    "onegreater",
-                    "twogreater"),
-                default="notequal")
-            private$..varEq <- jmvcore::OptionBool$new(
-                "varEq",
-                varEq,
-                default=TRUE)
+                    "likertFive",
+                    "likertSeven"),
+                default="likertFive")
 
             self$.addOption(private$..deps)
-            self$.addOption(private$..alt)
-            self$.addOption(private$..varEq)
+            self$.addOption(private$..likertVar)
         }),
     active = list(
         deps = function() private$..deps$value,
-        alt = function() private$..alt$value,
-        varEq = function() private$..varEq$value),
+        likertVar = function() private$..likertVar$value),
     private = list(
         ..deps = NA,
-        ..alt = NA,
-        ..varEq = NA)
+        ..likertVar = NA)
 )
 
 FuzzyDelphiMethodResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "FuzzyDelphiMethodResults",
     inherit = jmvcore::Group,
     active = list(
-        text = function() private$.items[["text"]]),
+        text = function() private$.items[["text"]],
+        FuzzyDelphiMethod = function() private$.items[["FuzzyDelphiMethod"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -61,7 +53,18 @@ FuzzyDelphiMethodResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text",
-                title="Fuzzy Delphi Method"))}))
+                title="Fuzzy Delphi Method"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="FuzzyDelphiMethod",
+                title="Fuzzy Delphi Method",
+                rows=15,
+                columns=list(
+                    list(
+                        `name`="var", 
+                        `title`="", 
+                        `type`="text", 
+                        `content`="($key)"))))}))
 
 FuzzyDelphiMethodBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "FuzzyDelphiMethodBase",
@@ -89,19 +92,24 @@ FuzzyDelphiMethodBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cl
 #' 
 #' @param data the data as a data frame
 #' @param deps the item in dataframe
-#' @param alt .
-#' @param varEq .
+#' @param likertVar .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$FuzzyDelphiMethod} \tab \tab \tab \tab \tab a table \cr
 #' }
+#'
+#' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
+#'
+#' \code{results$FuzzyDelphiMethod$asDF}
+#'
+#' \code{as.data.frame(results$FuzzyDelphiMethod)}
 #'
 #' @export
 FuzzyDelphiMethod <- function(
     data,
     deps,
-    alt = "notequal",
-    varEq = TRUE) {
+    likertVar = "likertFive") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("FuzzyDelphiMethod requires jmvcore to be installed (restart may be required)")
@@ -115,8 +123,7 @@ FuzzyDelphiMethod <- function(
 
     options <- FuzzyDelphiMethodOptions$new(
         deps = deps,
-        alt = alt,
-        varEq = varEq)
+        likertVar = likertVar)
 
     analysis <- FuzzyDelphiMethodClass$new(
         options = options,

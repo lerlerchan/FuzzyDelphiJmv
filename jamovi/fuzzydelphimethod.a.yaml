@@ -12,29 +12,29 @@ options:
         R: the data as a data frame
 
     - name: deps
-      title: Dependent Variables
+      title: Items
       type: Variables
       description:
         R: the item in dataframe
 
   #  - name: group
-   #   title: Grouping Variable
+  #    title: Grouping Variable
   #    type: Variable
-
-    - name: alt
-      title: Alternative hypothesis
+    
+    - name: likertVar
+      title: Likert Items
       type: List
       options:
-        - title: Not equal
-          name:  notequal
-        - title: One greater
-          name:  onegreater
-        - title: Two greater
-          name:  twogreater
-      default: notequal
-
-    - name: varEq
-      title: Assume equal variances
-      type: Bool
-      default: true
+        - name: likertFive
+          title: Five (5)
+        - name: likertSeven
+          title: Seven (7)
+#        - name: twoGreater
+ #         title: Two greater
+      default: likertFive
+    
+  #  - name: varEq
+  #    title: Assume equal variances
+  #    type: Bool
+  #    default: true
 ...
