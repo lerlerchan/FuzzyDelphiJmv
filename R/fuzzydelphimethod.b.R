@@ -165,7 +165,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
             for (col_num in 1:ncol(data_frame)) {
               # Calculate the percentage of values < 0.2
               below_threshold <- sum(data_frame[, col_num] <= consensus_threshold)
-              percentage_consensus <- sprintf("%.2f%%", (below_threshold / num_rows) * 100)
+              percentage_consensus <- as.numeric((below_threshold / num_rows) * 100)
               
               # Create a data frame with the percentage and column name
               result_df_item <- data.frame(Percentage = percentage_consensus)
@@ -201,50 +201,42 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
             }
           }
           
-          # 1. Calculate column sums:
-          sumM <- colSums(result_df)
           
-          # 2. Create a data frame with the sums:
-          sumM_df <- data.frame(t(sumM))  # Transpose to have sums as columns
-          
-          # 3. Set column names from the original data frame:
-          colnames(sumM_df) <- colnames(result_df)
-          
-          # 4. Print the updated data frame:
-          #print(sumM_df)
-          
-          col_names <- colnames(sumM_df)
-          #print(ncol(sumM_df))
-          
-          
-          # Initialize an empty list to store the results
-          result_deflist <- list()
-          
-          # Loop through each set of three columns
-          for (start_col in seq(1, ncol(sumM_df), by = 3)) {
-            end_col <- min(start_col + 2, ncol(sumM_df))
-            
-            # Extract the current set of three columns
-            current_columns <- sumM_df[, start_col:end_col]
-            #print(current_columns)
-            
-            # Apply the defuzzificationCell function to each row of the current set of columns
-            result <- apply(current_columns, 1, function(row) {
-              defuzzificationCell(row[1], row[2], row[3])
-            })
-            
-            # Check if result is not NULL
-            if (!is.null(result)) {
-              # Assign result directly to the specific index based on loop iteration
-              result_deflist[[length(result_deflist) + 1]] <- result
-            }
-          }
-          
-          result_def <- data.frame(result_deflist)
-          colnames(result_def) <- paste("Item", seq_along(result_deflist), sep = "")
-          
-          # Print the result data frame
-          print(result_def)
+            avgM <- colMeans(result_df)
+            avgM_df <- data.frame(t(avgM))  # Transpose to have sums as columns
+            colnames(avgM_df) <- colnames(result_df)
+            col_names <- colnames(avgM_df)
+
+            # Initialize an empty list to store the results
+              result_deflist <- list()
+
+              # Loop through each set of three columns
+              for (start_col in seq(1, ncol(avgM_df), by = 3)) {
+                end_col <- min(start_col + 2, ncol(avgM_df))
+
+                # Extract the current set of three columns
+                current_columns <- avgM_df[, start_col:end_col]
+                #print(current_columns)
+
+                # Apply the defuzzificationCell function to each row of the current set of columns
+                result <- apply(current_columns, 1, function(row) {
+                  defuzzificationCell(row[1], row[2], row[3])
+                })
+
+              # Check if result is not NULL
+              if (!is.null(result)) {
+                # Assign result directly to the specific index based on loop iteration
+                result_deflist[[length(result_deflist) + 1]] <- result
+              }
+              }
+
+              result_def <- data.frame(result_deflist)
+                colnames(result_def) <- paste("Item", seq_along(result_deflist), sep = "")
+
+                # Print the result data frame
+                print(result_def)
+
+
           
           # Assuming result_df is your dataframe
           # Extract numeric values from the dataframe
