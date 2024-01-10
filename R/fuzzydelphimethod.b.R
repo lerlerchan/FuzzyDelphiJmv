@@ -73,11 +73,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           
           # Combine the results into a data frame
           result_df <- as.data.frame(matched_values_list)
-          
-          # Print the result
-         # print(result_df)
-        #  self$results$text$setContent(result_df)
-          
+                    
           #Calculate the fuzzy Scale
           fuzzyScale <- function (m1, m2, m3, colMeanM1, colMeanM2, colMean3){
             d <- (((colMeanM1-m1)^2)+((colMeanM2-m2)^2)+((colMean3-m3)^2))
@@ -102,8 +98,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
             
             # Subset the data frame for the current item
             subset_df <- result_df[, grep(item_col_names, names(result_df))]
-            #print(subset_df)
-            #self$results$text$setContent(subset_df)
+
             # Calculate the column means for the current item
             col_means <- colMeans(subset_df, na.rm = TRUE)
             #print(col_means)
@@ -136,7 +131,12 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
          # print(rounded_dataframe)
         # self$results$text$setContent(rounded_dataframe)
        
-        # table$setRow(rowNo=15, resultList)
+          results <- rounded_dataframe
+          table <- self$results$FuzzyDelphiMethod
+          table$setRow(rowNo=15, values=list(
+            var=self$options$deps,
+            t=results$Value
+          ))
 
           
           #column Means of each fuzzy scale
