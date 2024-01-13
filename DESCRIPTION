@@ -1,12 +1,11 @@
 Package: FuzzyDelphiJmv
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.0.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: Fuzzy Delphi Method on Jamovi
+Version: 1.0.0
+Author: LerLer Chan
+Maintainer: The package maintainer <lkchan@sc.edu.my>
+Description: Fuzzy Delphi Method on Jamovi, opensource statistical software
+License: MIT 
 Encoding: UTF-8
 LazyData: true
 Imports: jmvcore (>= 0.8.5), R6
