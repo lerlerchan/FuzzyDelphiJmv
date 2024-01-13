@@ -51,14 +51,14 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
            # return()
           
           data <- self$data
-        #  data[[self$options$dependent]] <-
-        #  jmvcore::toNumeric(data[[self$options$dependent]])
-        likertVar <- self$options$likertVar
-        if(likertVar == "Likert5"){
-          likertToM <- likert5_to_m
-        }else{
-          likertToM <- likert7_to_m
-        }
+          #  data[[self$options$dependent]] <-
+          #  jmvcore::toNumeric(data[[self$options$dependent]])
+          likertVar <- self$options$likertVar
+          if(likertVar == "Likert5"){
+            likertToM <- likert5_to_m
+          }else{
+            likertToM <- likert7_to_m
+          }
           
           # Get the column names
           column_names <- names(data)
@@ -129,14 +129,14 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           
           # Print the rounded result data frame
          # print(rounded_dataframe)
-        # self$results$text$setContent(rounded_dataframe)
+        self$results$text$setContent(rounded_dataframe)
        
-          results <- rounded_dataframe
-          table <- self$results$FuzzyDelphiMethod
-          table$setRow(rowNo=15, values=list(
-            var=self$options$deps,
-            t=results$Value
-          ))
+        #  results <- rounded_dataframe
+        #  table <- self$results$FuzzyDelphiMethod
+        #  table$setRow(rowNo=15, values=list(
+        #    var=self$options$deps,
+        #    t=results$Value
+        #  ))
 
           
           #column Means of each fuzzy scale
@@ -150,9 +150,9 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           dConstruct <- mean(colMeansFuzzyScale, na.rm = TRUE)
           
           # Print the mean of total
-          print("Mean of Total Fuzzy Scale:")
+          #print("Mean of Total Fuzzy Scale:")
           dCounstruct <- round(dConstruct,2)
-          print(dConstruct)
+          #print(dConstruct)
           
           calculate_consensus_percentage <- function(data_frame) {
             num_rows <- nrow(data_frame)
@@ -187,7 +187,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           result_percentage <- calculate_consensus_percentage(final_result_df)
           
           # Print the result
-          print(result_percentage)
+          #print(result_percentage)
           
           # Modified defuzzificationCell function
           defuzzificationCell <- function(m1, m2, m3){
@@ -234,28 +234,66 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
                 colnames(result_def) <- paste("Item", seq_along(result_deflist), sep = "")
 
                 # Print the result data frame
-                print(result_def)
+                #print(result_def)
 
 
           
-          # Assuming result_df is your dataframe
-          # Extract numeric values from the dataframe
-          numeric_values <- as.numeric(unlist(result_def))
-          
-          # Remove NA values if any
-          numeric_values <- numeric_values[!is.na(numeric_values)]
-          
-          # Rank the numeric values in ascending order
-          ranked_values <- rank(-numeric_values, na.last = "keep")
-          
-          # Create a dataframe with numeric values and their corresponding ranking
-          ranked_df <- data.frame(NumericValue = numeric_values, Rank = ranked_values)
-          
-          # Print the resulting dataframe
-          print(ranked_df)
-         # self$results$text$setContent(ranked_df)
-          
-          
+              # Assuming result_df is your dataframe
+              # Extract numeric values from the dataframe
+              numeric_values <- as.numeric(unlist(result_def))
+              
+              # Remove NA values if any
+              numeric_values <- numeric_values[!is.na(numeric_values)]
+              
+              # Rank the numeric values in ascending order
+              ranked_values <- rank(-numeric_values, na.last = "keep")
+              
+              # Create a dataframe with numeric values and their corresponding ranking
+              ranked_df <- data.frame(NumericValue = numeric_values, Rank = ranked_values)
+              
+              # Print the resulting dataframe
+              #print(ranked_df)
+            # self$results$text$setContent(ranked_df)
+
+              # transpose data frame
+              new_ranked_df <- data.frame(t(ranked_df))
+
+              # redefine row and column names
+              rownames(new_ranked_df) <- colnames(ranked_df)
+              colnames(new_ranked_df) <- rownames(ranked_df)
+
+              # remove row names
+              row.names(new_ranked_df) <- NULL
+
+              # rename column names
+              colnames(new_ranked_df) <- paste("Item", 1:ncol(new_ranked_df), sep = "")
+
+              # view transposed data frame with new column names
+              #print(new_ranked_df)
+
+              #FuzzyScale after calculating apply the sqrt(1/3)
+              df1 <- rounded_dataframe
+              # mean of fuzzy Scale
+              df2 <- colMeansFuzzyScale
+              # d Construct
+              df3 <- dConstruct
+              #percentage of items below 0.2
+              df4 <- result_percentage
+              # defuzzification result
+              df5 <- result_def
+              #ranking
+              df6 <- new_ranked_df
+
+              df_combined <- rbind(df1, df2)
+              df_combined <- rbind(df_combined, df4)
+              df_combined <- rbind(df_combined, df5)
+              df_combined <- rbind(df_combined, df6)
+              #print(df_combined)
+              
+              results <- df_combined
+              table <- self$results$FuzzyDelphiMethod
+              table$setRow(rowNo=15, values=results)
+              self$results$text$setContent(results)
 
         })
 )
