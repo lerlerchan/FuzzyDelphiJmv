@@ -81,7 +81,6 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
             d <- sqrt(d)
             return(d)
           }
-          
 
           
           # Number of items
@@ -132,9 +131,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           #column Means of each fuzzy scale
           colMeansFuzzyScale <- colMeans(final_result_df)
           colMeansFuzzyScale <- round(colMeansFuzzyScale,2)
-          #print(colMeansFuzzyScale)
-          #self$results$text$setContent(colMeansFuzzyScale)
-          
+
           
           # Calculate the mean of total
           dConstruct <- mean(colMeansFuzzyScale, na.rm = TRUE)
@@ -171,8 +168,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           # Example usage with your 'final_result_df' data frame
           result_percentage <- calculate_consensus_percentage(final_result_df)
           
-          # Print the result
-          #print(result_percentage)
+          perCentageDCon <- rowMeans(result_percentage, na.rm = TRUE)
           
           # Modified defuzzificationCell function
           defuzzificationCell <- function(m1, m2, m3){
@@ -217,10 +213,6 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
 
               result_def <- data.frame(result_deflist)
                 colnames(result_def) <- paste("Item", seq_along(result_deflist), sep = "")
-
-                # Print the result data frame
-                #print(result_def)
-
 
           
               # Assuming result_df is your dataframe
@@ -274,6 +266,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               df_combined <- rbind(df_combined, df5)
               df_combined <- rbind(df_combined, df6)
          
+              self$results$text$setContent(perCentageDCon)
               
             #output the calculated Info into dcTable            
               table1 <- self$results$dcTable
@@ -285,7 +278,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               #row2 = result percentage
               table1$setRow(rowNo=2, values=list(
                 var = "%o f expert consesnsus for construct",
-                varDconstruct = result_percentage
+                varDconstruct = perCentageDCon
               ))
 
         })
