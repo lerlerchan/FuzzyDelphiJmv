@@ -126,18 +126,8 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           final_result_df <- do.call(cbind, result_list)
           
           rounded_dataframe <- round(final_result_df,1)
-          
-          # Print the rounded result data frame
-         # print(rounded_dataframe)
-        self$results$text$setContent(rounded_dataframe)
-       
-        #  results <- rounded_dataframe
-        #  table <- self$results$FuzzyDelphiMethod
-        #  table$setRow(rowNo=15, values=list(
-        #    var=self$options$deps,
-        #    t=results$Value
-        #  ))
 
+         self$results$text$setContent(rounded_dataframe)
           
           #column Means of each fuzzy scale
           colMeansFuzzyScale <- colMeans(final_result_df)
@@ -148,12 +138,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           
           # Calculate the mean of total
           dConstruct <- mean(colMeansFuzzyScale, na.rm = TRUE)
-          
-          # Print the mean of total
-          #print("Mean of Total Fuzzy Scale:")
-          dCounstruct <- round(dConstruct,2)
-          #print(dConstruct)
-          
+
           calculate_consensus_percentage <- function(data_frame) {
             num_rows <- nrow(data_frame)
             consensus_threshold <- 0.2
@@ -288,12 +273,20 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               df_combined <- rbind(df_combined, df4)
               df_combined <- rbind(df_combined, df5)
               df_combined <- rbind(df_combined, df6)
-              #print(df_combined)
+         
               
-              results <- df_combined
-              table <- self$results$FuzzyDelphiMethod
-              table$setRow(rowNo=15, values=results)
-              self$results$text$setContent(results)
+            #output the calculated Info into dcTable            
+              table1 <- self$results$dcTable
+              #row1 = value d construct
+              table1$setRow(rowNo=1, values=list(
+                var = "Value d construct",
+                varDconstruct = dConstruct
+              ))
+              #row2 = result percentage
+              table1$setRow(rowNo=2, values=list(
+                var = "%o f expert consesnsus for construct",
+                varDconstruct = result_percentage
+              ))
 
         })
 )

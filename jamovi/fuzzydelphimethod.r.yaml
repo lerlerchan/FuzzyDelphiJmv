@@ -7,14 +7,28 @@ items:
     - name:  text
       title: Fuzzy Delphi Method
       type:  Preformatted
-    - name: FuzzyDelphiMethod
-      title: Fuzzy Delphi Method
-      type:  Table
-      rows: 15
+      
+#    - name: FuzzyDelphiTable
+#      title: Fuzzy Delphi Method
+#      type:  Table
+#      rows: 15
+#      columns:
+#      - name: var
+#        title: ''
+#        type: text
+#        content: ($key)
+        
+    - name: dcTable
+      title: Value "d" Construct
+      type: Table
+      rows: 2
       columns:
       - name: var
         title: ''
         type: text
-        content: ($key)
+      - name: varDconstruct
+        title: 'Average'
+        type: number
+      
 
 ...

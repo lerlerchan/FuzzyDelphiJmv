@@ -42,7 +42,8 @@ FuzzyDelphiMethodResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
     inherit = jmvcore::Group,
     active = list(
         text = function() private$.items[["text"]],
-        FuzzyDelphiMethod = function() private$.items[["FuzzyDelphiMethod"]]),
+        FuzzyDelphiTable = function() private$.items[["FuzzyDelphiTable"]],
+        dcTable = function() private$.items[["dcTable"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -56,7 +57,7 @@ FuzzyDelphiMethodResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
                 title="Fuzzy Delphi Method"))
             self$add(jmvcore::Table$new(
                 options=options,
-                name="FuzzyDelphiMethod",
+                name="FuzzyDelphiTable",
                 title="Fuzzy Delphi Method",
                 rows=15,
                 columns=list(
@@ -64,7 +65,21 @@ FuzzyDelphiMethodResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
                         `name`="var", 
                         `title`="", 
                         `type`="text", 
-                        `content`="($key)"))))}))
+                        `content`="($key)"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="dcTable",
+                title="Value \"d\" Construct",
+                rows=2,
+                columns=list(
+                    list(
+                        `name`="var", 
+                        `title`="", 
+                        `type`="text"),
+                    list(
+                        `name`="varDconstruct", 
+                        `title`="Average", 
+                        `type`="number"))))}))
 
 FuzzyDelphiMethodBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "FuzzyDelphiMethodBase",
@@ -96,14 +111,15 @@ FuzzyDelphiMethodBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cl
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
-#'   \code{results$FuzzyDelphiMethod} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$FuzzyDelphiTable} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$dcTable} \tab \tab \tab \tab \tab a table \cr
 #' }
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
 #'
-#' \code{results$FuzzyDelphiMethod$asDF}
+#' \code{results$FuzzyDelphiTable$asDF}
 #'
-#' \code{as.data.frame(results$FuzzyDelphiMethod)}
+#' \code{as.data.frame(results$FuzzyDelphiTable)}
 #'
 #' @export
 FuzzyDelphiMethod <- function(
