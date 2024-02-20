@@ -125,11 +125,8 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           final_result_df <- do.call(cbind, result_list)
           
           rounded_dataframe <- round(final_result_df,1)
-          
-          fuzzyScaleScore = paste0("Fuzzy Score", "<br/>")
-          self$results$text$setContent(fuzzyScaleScore)
 
-        # self$results$text$setContent(rounded_dataframe)
+          self$results$text$setContent(rounded_dataframe)
           
           #column Means of each fuzzy scale
           colMeansFuzzyScale <- colMeans(final_result_df)
@@ -269,7 +266,31 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               df_combined <- rbind(df_combined, df5)
               df_combined <- rbind(df_combined, df6)
               
-         
+              table1 <- self$results$scoreTable
+              # Assuming you have a dataframe called 'dataframe' with the data you want to display
+              
+              # Initialize an empty list to store the values
+              rows <- list()
+              
+              # Loop through each row of the dataframe
+              for (i in 1:nrow(df4)) {
+                # Extract the values from the dataframe
+                value <- df4$value[i]
+                description <- df4$description[i]
+                
+                # Append the values to the 'rows' list
+                rows[[i]] <- list(
+                  var = description,
+                  varDconstruct = value
+                )
+              }
+
+              
+              # Loop through the 'rows' list and set each row in the table
+              for (i in 1:length(rows)) {
+                table1$setRow(rowNo = i, values = rows[[i]])
+              }
+              
               
             #output the calculated Info into dcTable            
               table2 <- self$results$dcTable

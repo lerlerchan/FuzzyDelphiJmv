@@ -21,13 +21,13 @@ items:
     - name: scoreTable
       title: Fuzzy Score Table
       type: Table
-      rows: 2
+      rows: 4
       columns:
       - name: var
         title: ''
         type: text
       - name: varScore
-        title: 'Average'
+        title: ''
         type: number
         
     - name: dcTable
