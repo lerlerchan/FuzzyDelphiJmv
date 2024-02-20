@@ -1,2 +1,2 @@
-Fuzzy Delphi Module for Jammovi
+Fuzzy Delphi Module for Jamovi
 # title
