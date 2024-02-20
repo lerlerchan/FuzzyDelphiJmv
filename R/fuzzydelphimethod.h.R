@@ -59,7 +59,7 @@ FuzzyDelphiMethodResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
                 options=options,
                 name="scoreTable",
                 title="Fuzzy Score Table",
-                rows=2,
+                rows=4,
                 columns=list(
                     list(
                         `name`="var", 

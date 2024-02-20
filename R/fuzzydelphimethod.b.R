@@ -267,29 +267,14 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               df_combined <- rbind(df_combined, df6)
               
               table1 <- self$results$scoreTable
-              # Assuming you have a dataframe called 'dataframe' with the data you want to display
-              
-              # Initialize an empty list to store the values
-              rows <- list()
-              
-              # Loop through each row of the dataframe
-              for (i in 1:nrow(df4)) {
-                # Extract the values from the dataframe
-                value <- df4$value[i]
-                description <- df4$description[i]
-                
-                # Append the values to the 'rows' list
-                rows[[i]] <- list(
-                  var = description,
-                  varDconstruct = value
-                )
-              }
 
-              
-              # Loop through the 'rows' list and set each row in the table
-              for (i in 1:length(rows)) {
-                table1$setRow(rowNo = i, values = rows[[i]])
+              for (i in 1:seq_along(colMeansFuzzyScale)){
+                table1$setRow(rowNo=1, values=list(
+                  var = "Value d of each item",
+                  varScore = colMeansFuzzyScale[i]
+                ))
               }
+           
               
               
             #output the calculated Info into dcTable            
