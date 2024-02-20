@@ -125,8 +125,11 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           final_result_df <- do.call(cbind, result_list)
           
           rounded_dataframe <- round(final_result_df,1)
+          
+          fuzzyScaleScore = paste0("Fuzzy Score", "<br/>")
+          self$results$text$setContent(fuzzyScaleScore)
 
-         self$results$text$setContent(rounded_dataframe)
+        # self$results$text$setContent(rounded_dataframe)
           
           #column Means of each fuzzy scale
           colMeansFuzzyScale <- colMeans(final_result_df)
@@ -265,18 +268,18 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               df_combined <- rbind(df_combined, df4)
               df_combined <- rbind(df_combined, df5)
               df_combined <- rbind(df_combined, df6)
+              
          
-              self$results$text$setContent(perCentageDCon)
               
             #output the calculated Info into dcTable            
-              table1 <- self$results$dcTable
+              table2 <- self$results$dcTable
               #row1 = value d construct
-              table1$setRow(rowNo=1, values=list(
+              table2$setRow(rowNo=1, values=list(
                 var = "Value d construct",
                 varDconstruct = dConstruct
               ))
               #row2 = result percentage
-              table1$setRow(rowNo=2, values=list(
+              table2$setRow(rowNo=2, values=list(
                 var = "%o f expert consesnsus for construct",
                 varDconstruct = perCentageDCon
               ))

@@ -17,6 +17,18 @@ items:
 #        title: ''
 #        type: text
 #        content: ($key)
+
+    - name: scoreTable
+      title: Fuzzy Score Table
+      type: Table
+      rows: 2
+      columns:
+      - name: var
+        title: ''
+        type: text
+      - name: varScore
+        title: 'Average'
+        type: number
         
     - name: dcTable
       title: Value "d" Construct
