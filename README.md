@@ -1,6 +1,6 @@
 # Fuzzy Delphi Module for Jamovi
 ## Background
-The fuzzy Delphi method (FDM) is a modified version of the classical Delphi technique that applies fuzzy set theory to handle the ambiguity and vagueness in expert opinions3. Jamovi is an open source statistical software that is user-friendly and based on R programming language4. The project investigates the evolution of a FDM module that has been incorporated into Jamovi and explores its potential uses and benefits2.
+The fuzzy Delphi method (FDM) is a modified version of the classical Delphi technique that applies fuzzy set theory to handle the ambiguity and vagueness in expert opinions. Jamovi is an open source statistical software that is user-friendly and based on R programming language. The project investigates the evolution of a FDM module that has been incorporated into Jamovi and explores its potential uses and benefits.
 
 ## Project Aim
 To develop a flexible fuzzy Delphi module for the Jamovi statistical analysis platform that allows users to customize and refine the Delphi technique according to their own research needs and preferences.
