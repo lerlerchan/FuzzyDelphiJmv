@@ -43,6 +43,7 @@ FuzzyDelphiMethodResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
     active = list(
         text = function() private$.items[["text"]],
         scoreTable = function() private$.items[["scoreTable"]],
+        compTable = function() private$.items[["compTable"]],
         dcTable = function() private$.items[["dcTable"]]),
     private = list(),
     public=list(
@@ -59,16 +60,22 @@ FuzzyDelphiMethodResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
                 options=options,
                 name="scoreTable",
                 title="Fuzzy Score Table",
+                rows=21,
+                columns=list(
+                    list(
+                        `name`="var", 
+                        `title`="", 
+                        `type`="text"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="compTable",
+                title="Computed Table",
                 rows=4,
                 columns=list(
                     list(
                         `name`="var", 
                         `title`="", 
-                        `type`="text"),
-                    list(
-                        `name`="varScore", 
-                        `title`="", 
-                        `type`="number"))))
+                        `type`="text"))))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="dcTable",
@@ -115,6 +122,7 @@ FuzzyDelphiMethodBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cl
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$scoreTable} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$compTable} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$dcTable} \tab \tab \tab \tab \tab a table \cr
 #' }
 #'

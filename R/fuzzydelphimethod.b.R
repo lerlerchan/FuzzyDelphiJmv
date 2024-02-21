@@ -5,6 +5,18 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
     "FuzzyDelphiMethodClass",
     inherit = FuzzyDelphiMethodBase,
     private = list(
+        .init = function() {
+            table1 <- self$results$scoreTable
+            for (name in self$options$deps) {
+              table1$addColumn(name, title=name)
+            }
+            
+            table3 <- self$results$compTable
+            for (name in self$options$deps) {
+              table3$addColumn(name, title=name)
+            }
+            
+          },
         .run = function() {
           # Function to match Likert scale responses to m values          
           #fuzzy set of likert 5
@@ -124,13 +136,15 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           # Combine the results into a single data frame
           final_result_df <- do.call(cbind, result_list)
           
-          rounded_dataframe <- round(final_result_df,1)
+          rounded_dataframe <- round(final_result_df,3)
 
-          self$results$text$setContent(rounded_dataframe)
+         # self$results$text$setContent(rounded_dataframe)
+          
+
           
           #column Means of each fuzzy scale
-          colMeansFuzzyScale <- colMeans(final_result_df)
-          colMeansFuzzyScale <- round(colMeansFuzzyScale,2)
+          colMeansFuzzyScale <- colMeans(final_result_df, na.rm = TRUE)
+          colMeansFuzzyScale <- round(colMeansFuzzyScale,3)
 
           
           # Calculate the mean of total
@@ -266,28 +280,46 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               df_combined <- rbind(df_combined, df5)
               df_combined <- rbind(df_combined, df6)
               
+              #output FUzzy Score into scoreTable = table1
+          #    table1 <- self$results$scoreTable
+          #    for (rowNom in seq_len(nrow(rounded_dataframe))) {
+          #      if (rowNom > table1$rowCount)
+          #        break()
+          #      values <- as.list(rounded_dataframe[rowNom,])
+          #      table1$setRow(rowNo=rowNom, values)
+          #    }
+              
               table1 <- self$results$scoreTable
-
-              for (i in 1:seq_along(colMeansFuzzyScale)){
-                table1$setRow(rowNo=1, values=list(
-                  var = "Value d of each item",
-                  varScore = colMeansFuzzyScale[i]
-                ))
+              for (rowNom in seq_len(nrow(df_combined))) {
+                if (rowNom > table1$rowCount)
+                  break()
+                values <- as.list(df_combined[rowNom,])
+                table1$setRow(rowNo=rowNom, values)
               }
-           
+              table1$setRow(rowKey=21, var="Item rank")
+
+              self$results$text$setContent(colMeansFuzzyScale)
+              
+            #  table3 <- self$results$compTable
+            #  for (rowNom in seq_along(colMeansFuzzyScale)) {
+            #    if (rowNom > table3$rowCount)
+            #      break()
+            #    values <- as.list(colMeansFuzzyScale[rowNom])
+            #    table3$setRow(rowNo=rowNom, values)
+            #  }
               
               
-            #output the calculated Info into dcTable            
+            #output the calculated Info into dcTable = table2            
               table2 <- self$results$dcTable
               #row1 = value d construct
               table2$setRow(rowNo=1, values=list(
                 var = "Value d construct",
-                varDconstruct = dConstruct
+                varDconstruct = format(round(dConstruct,digits = 2), nsmall = 2)
               ))
               #row2 = result percentage
               table2$setRow(rowNo=2, values=list(
                 var = "%o f expert consesnsus for construct",
-                varDconstruct = perCentageDCon
+                varDconstruct = format(round(perCentageDCon,digits = 2), nsmall=2)
               ))
 
         })

@@ -21,14 +21,21 @@ items:
     - name: scoreTable
       title: Fuzzy Score Table
       type: Table
+      rows: 21
+      columns:
+      - name: var
+        title: ''
+        type: text
+        
+    - name: compTable
+      title: Computed Table
+      type: Table
       rows: 4
       columns:
       - name: var
         title: ''
         type: text
-      - name: varScore
-        title: ''
-        type: number
+
         
     - name: dcTable
       title: Value "d" Construct
