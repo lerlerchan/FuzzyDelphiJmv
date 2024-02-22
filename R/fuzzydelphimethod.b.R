@@ -136,7 +136,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           # Combine the results into a single data frame
           final_result_df <- do.call(cbind, result_list)
           
-          rounded_dataframe <- round(final_result_df,3)
+          rounded_dataframe <- round(final_result_df,2)
 
          # self$results$text$setContent(rounded_dataframe)
           
@@ -144,7 +144,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
           
           #column Means of each fuzzy scale
           colMeansFuzzyScale <- colMeans(final_result_df, na.rm = TRUE)
-          colMeansFuzzyScale <- round(colMeansFuzzyScale,3)
+          colMeansFuzzyScale <- round(colMeansFuzzyScale,2)
 
           
           # Calculate the mean of total
@@ -261,26 +261,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               # Remove the first row from the dataframe
               new_ranked_df <- new_ranked_df[-1, ]
 
-              # view transposed data frame with new column names
-              #print(new_ranked_df)
-
-              #FuzzyScale after calculating apply the sqrt(1/3)
-              df1 <- rounded_dataframe
-              # mean of fuzzy Scale
-              df2 <- colMeansFuzzyScale
-              # d Construct
-              df3 <- dConstruct
-              #percentage of items below 0.2
-              df4 <- result_percentage
-              # defuzzification result
-              df5 <- result_def
-              #ranking
-              df6 <- new_ranked_df
-
-              df_combined <- rbind(df1, df2)
-              df_combined <- rbind(df_combined, df4)
-             # df_combined <- rbind(df_combined, df5)
-              df_combined <- rbind(df_combined, df6)
+      
               
               #output FUzzy Score into scoreTable = table1
               table1 <- self$results$scoreTable
@@ -289,8 +270,34 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
                   break()
                 values <- as.list(rounded_dataframe[rowNom,])
                 table1$setRow(rowNo=rowNom, values)
+                table1$setRow(rowNo=rowNom, list(var=paste("Expert ", rowNom)))
               }
-              table1$setRow(rowKey=20, list(var="Item rank"))
+              
+              for (rowNom in seq_along(colMeansFuzzyScale)) {
+                values <- as.list(colMeansFuzzyScale[rowNom])
+                table1$setRow(rowNo=18, values)
+              }
+              table1$setRow(rowNo=18, list(var="Value d of each item"))
+              
+              for (rowNom in seq_along(result_percentage)) {
+                values <- as.list(result_percentage[rowNom])
+                table1$setRow(rowNo=19, values)
+              }
+              table1$setRow(rowNo=19, list(var="% of expert consensus for each item"))
+              
+              for (rowNom in seq_along(result_def)) {
+                values <- as.list(result_def[rowNom])
+                table1$setRow(rowNo=20, values)
+              }
+              table1$setRow(rowNo=20, list(var="Defuzzification"))
+        
+              for (rowNom in seq_along(new_ranked_df)){
+                # format(round(new_ranked_df[rowNom], digits=1), nsmall=1)
+                # values <- as.list(format(round(new_ranked_df[rowNom], digits=1), nsmall=1))
+                values <- as.list(new_ranked_df[rowNom])
+                table1$setRow(rowNo=21, values)
+              }
+              table1$setRow(rowNo=21, list(var="Item ranking"))
               
              # self$results$text$setContent(colMeansFuzzyScale)
               
@@ -299,33 +306,28 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
                 values <- as.list(colMeansFuzzyScale[rowNom])
                 table3$setRow(rowNo=1, values)
               }
-              #table3$setRow(rowKey=1, list(var="Value d of each item"))
-              #table3$setRow(rowKey=1, list(var="Item rank"))
-              
+              table3$setRow(rowNo=1, list(var="Value d of each item"))
+
               for (rowNom in seq_along(result_percentage)) {
                 values <- as.list(result_percentage[rowNom])
                 table3$setRow(rowNo=2, values)
               }
+              table3$setRow(rowNo=2, list(var="% of expert consensus for each item"))
               
               for (rowNom in seq_along(result_def)) {
                 values <- as.list(result_def[rowNom])
                 table3$setRow(rowNo=3, values)
               }
+              table3$setRow(rowNo=3, list(var="Defuzzificationt"))
               
               for (rowNom in seq_along(new_ranked_df)){
+               # format(round(new_ranked_df[rowNom], digits=1), nsmall=1)
+               # values <- as.list(format(round(new_ranked_df[rowNom], digits=1), nsmall=1))
                 values <- as.list(new_ranked_df[rowNom])
                 table3$setRow(rowNo=4, values)
               }
+              table3$setRow(rowNo=4, list(var="Item ranking"))
               
-            #  for (colName in colnames(new_ranked_df)) {
-            #     values <- as.list(new_ranked_df[2, colName])
-            #     table3$setRow(rowNo=4, values)
-            #  }
-              
-              #for (rowNom in seq_along(new_ranked_df$NumericValue)) {
-              #  values <- as.list(new_ranked_df[rowNom, ])
-              #  table3$setRow(rowNo = 4, values)
-              #}
               
             #output the calculated Info into dcTable = table2            
               table2 <- self$results$dcTable

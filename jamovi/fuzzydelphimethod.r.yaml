@@ -38,7 +38,7 @@ items:
 
         
     - name: dcTable
-      title: Value "d" Construct
+      title: Mean of item construct
       type: Table
       rows: 2
       columns:

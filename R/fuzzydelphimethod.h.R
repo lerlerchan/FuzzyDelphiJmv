@@ -79,7 +79,7 @@ FuzzyDelphiMethodResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R
             self$add(jmvcore::Table$new(
                 options=options,
                 name="dcTable",
-                title="Value \"d\" Construct",
+                title="Mean of item construct",
                 rows=2,
                 columns=list(
                     list(
