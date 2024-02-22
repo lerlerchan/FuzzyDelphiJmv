@@ -6,10 +6,12 @@ The fuzzy Delphi method (FDM) is a modified version of the classical Delphi tech
 To develop a flexible fuzzy Delphi module for the Jamovi statistical analysis platform that allows users to customize and refine the Delphi technique according to their own research needs and preferences.
 
 ## Installation
+Step-by-step images procedure can be view at [Here]()
 To install the Fuzzy Delphi module in Jamovi, follow these steps:
 
 1. Click on the “+” icon in the top-right corner of Jamovi to access the module installation options.
-2. Choose the Jamovi library from the menu that opens.
+2. Choose the Jamovi library from the menu that opens. OR download from [Here](https://github.com/lerlerchan/FuzzyDelpiJmv/blob/main/FuzzyDelphiJmv_0.0.0.jmo)
+
 3. In the window that appears, click on “Available” (located at the top-middle).
 4. Browse through the list of modules and click “INSTALL” for the Fuzzy Delphi module or any other module you’d like to use.
 5. Finally, close the window by clicking the arrow pointing up in the top-right corner.
