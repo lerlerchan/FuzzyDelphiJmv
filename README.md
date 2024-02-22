@@ -15,7 +15,11 @@ To install the Fuzzy Delphi module in Jamovi, follow these steps:
 3. In the window that appears, click on “Available” (located at the top-middle).
 4. Browse through the list of modules and click “INSTALL” for the Fuzzy Delphi module or any other module you’d like to use.
 5. Finally, close the window by clicking the arrow pointing up in the top-right corner.
-Once installed, you’ll be able to utilize the Fuzzy Delphi module for your research needs and customize it according to your preferences
+Once installed, you’ll be able to utilize the Fuzzy Delphi module for your
+research needs and customize it according to your preferences
+
+Important Notes:
+1. Name all your data header in "Item<number>". For Example: Item1, Item2,....
 
 ## Contributing
 We are happy to receive bug reports, suggestions, questions, and (most of all) contributions to fix problems and add features. Pull Requests for contributions are encouraged.
