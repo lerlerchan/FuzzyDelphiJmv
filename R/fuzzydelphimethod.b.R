@@ -214,19 +214,19 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
                 #print(current_columns)
 
                 # Apply the defuzzificationCell function to each row of the current set of columns
-                result <- apply(current_columns, 1, function(row) {
+                resultD <- apply(current_columns, 1, function(row) {
                   defuzzificationCell(row[1], row[2], row[3])
                 })
 
               # Check if result is not NULL
               if (!is.null(result)) {
                 # Assign result directly to the specific index based on loop iteration
-                result_deflist[[length(result_deflist) + 1]] <- result
+                result_deflist[[length(result_deflist) + 1]] <- resultD
               }
               }
 
               result_def <- data.frame(result_deflist)
-                colnames(result_def) <- paste("Item", seq_along(result_deflist), sep = "")
+              colnames(result_def) <- paste("Item", seq_along(result_deflist), sep = "")
 
           
               # Assuming result_df is your dataframe
@@ -258,6 +258,8 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
 
               # rename column names
               colnames(new_ranked_df) <- paste("Item", 1:ncol(new_ranked_df), sep = "")
+              # Remove the first row from the dataframe
+              new_ranked_df <- new_ranked_df[-1, ]
 
               # view transposed data frame with new column names
               #print(new_ranked_df)
@@ -277,37 +279,53 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
 
               df_combined <- rbind(df1, df2)
               df_combined <- rbind(df_combined, df4)
-              df_combined <- rbind(df_combined, df5)
+             # df_combined <- rbind(df_combined, df5)
               df_combined <- rbind(df_combined, df6)
               
               #output FUzzy Score into scoreTable = table1
-          #    table1 <- self$results$scoreTable
-          #    for (rowNom in seq_len(nrow(rounded_dataframe))) {
-          #      if (rowNom > table1$rowCount)
-          #        break()
-          #      values <- as.list(rounded_dataframe[rowNom,])
-          #      table1$setRow(rowNo=rowNom, values)
-          #    }
-              
               table1 <- self$results$scoreTable
-              for (rowNom in seq_len(nrow(df_combined))) {
+              for (rowNom in seq_len(nrow(rounded_dataframe))) {
                 if (rowNom > table1$rowCount)
                   break()
-                values <- as.list(df_combined[rowNom,])
+                values <- as.list(rounded_dataframe[rowNom,])
                 table1$setRow(rowNo=rowNom, values)
               }
-              table1$setRow(rowKey=21, var="Item rank")
-
-              self$results$text$setContent(colMeansFuzzyScale)
+              table1$setRow(rowKey=20, list(var="Item rank"))
               
-            #  table3 <- self$results$compTable
-            #  for (rowNom in seq_along(colMeansFuzzyScale)) {
-            #    if (rowNom > table3$rowCount)
-            #      break()
-            #    values <- as.list(colMeansFuzzyScale[rowNom])
-            #    table3$setRow(rowNo=rowNom, values)
+             # self$results$text$setContent(colMeansFuzzyScale)
+              
+              table3 <- self$results$compTable
+              for (rowNom in seq_along(colMeansFuzzyScale)) {
+                values <- as.list(colMeansFuzzyScale[rowNom])
+                table3$setRow(rowNo=1, values)
+              }
+              #table3$setRow(rowKey=1, list(var="Value d of each item"))
+              #table3$setRow(rowKey=1, list(var="Item rank"))
+              
+              for (rowNom in seq_along(result_percentage)) {
+                values <- as.list(result_percentage[rowNom])
+                table3$setRow(rowNo=2, values)
+              }
+              
+              for (rowNom in seq_along(result_def)) {
+                values <- as.list(result_def[rowNom])
+                table3$setRow(rowNo=3, values)
+              }
+              
+              for (rowNom in seq_along(new_ranked_df)){
+                values <- as.list(new_ranked_df[rowNom])
+                table3$setRow(rowNo=4, values)
+              }
+              
+            #  for (colName in colnames(new_ranked_df)) {
+            #     values <- as.list(new_ranked_df[2, colName])
+            #     table3$setRow(rowNo=4, values)
             #  }
               
+              #for (rowNom in seq_along(new_ranked_df$NumericValue)) {
+              #  values <- as.list(new_ranked_df[rowNom, ])
+              #  table3$setRow(rowNo = 4, values)
+              #}
               
             #output the calculated Info into dcTable = table2            
               table2 <- self$results$dcTable
