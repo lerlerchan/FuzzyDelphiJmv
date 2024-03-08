@@ -140,7 +140,6 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
 
          # self$results$text$setContent(rounded_dataframe)
           
-
           
           #column Means of each fuzzy scale
           colMeansFuzzyScale <- colMeans(final_result_df, na.rm = TRUE)
@@ -318,11 +317,9 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
                 values <- as.list(result_def[rowNom])
                 table3$setRow(rowNo=3, values)
               }
-              table3$setRow(rowNo=3, list(var="Defuzzificationt"))
+              table3$setRow(rowNo=3, list(var="Defuzzification"))
               
               for (rowNom in seq_along(new_ranked_df)){
-               # format(round(new_ranked_df[rowNom], digits=1), nsmall=1)
-               # values <- as.list(format(round(new_ranked_df[rowNom], digits=1), nsmall=1))
                 values <- as.list(new_ranked_df[rowNom])
                 table3$setRow(rowNo=4, values)
               }
@@ -338,7 +335,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               ))
               #row2 = result percentage
               table2$setRow(rowNo=2, values=list(
-                var = "%o f expert consesnsus for construct",
+                var = "% of expert consesnsus for construct",
                 varDconstruct = format(round(perCentageDCon,digits = 2), nsmall=2)
               ))
 
