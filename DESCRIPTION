@@ -4,8 +4,8 @@ Title: Fuzzy Delphi Method on Jamovi
 Version: 1.0.0
 Author: LerLer Chan
 Maintainer: The package maintainer <lkchan@sc.edu.my>
-Description: Fuzzy Delphi Method on Jamovi, opensource statistical software
-License: MIT 
+Description: Fuzzy Delphi Method module on Jamovi, opensource statistical software
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: jmvcore (>= 0.8.5), R6
