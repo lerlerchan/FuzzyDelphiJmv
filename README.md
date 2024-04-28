@@ -38,5 +38,6 @@ Here are some simple ways in which you can contribute (in the increasing order o
 
 ## License
 
-MIT License
+MIT License till 28 April 2024
+GPL License will change on 29 April 
 
