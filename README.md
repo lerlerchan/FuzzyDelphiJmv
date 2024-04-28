@@ -5,9 +5,10 @@ The fuzzy Delphi method (FDM) is a modified version of the classical Delphi tech
 Paper link: [coming soon](https://submit.confbay.com/conf/icoseta2024)
 
 ### References
-Chan, LK (2024) FuzzyDelphiJmv (Version 1.0) [Computer software]. Retrieved from
+[1] Chan, LK (2024) FuzzyDelphiJmv (Version 1.0) [Computer software]. Retrieved from
 https://lerlerchan.github.io/FuzzyDelphiJmv/
-The jamovi project (2022). jamovi. (Version 2.3) [Computer Software]. Retrieved from https://www.jamovi.org.
+
+[2] The jamovi project (2022). jamovi. (Version 2.3) [Computer Software]. Retrieved from https://www.jamovi.org.
 
 ## Project Aim
 To develop a flexible fuzzy Delphi module for the Jamovi statistical analysis platform that allows users to customize and refine the Delphi technique according to their own research needs and preferences.
@@ -43,6 +44,7 @@ Here are some simple ways in which you can contribute (in the increasing order o
 
 ## License
 
-MIT License till 28 April 2024
-GPL-v3 License will be updated on 29 April 2024
+MIT License till 27 April 2024
+
+GPL-v3 License updated on 28 April 2024
 
