@@ -20,7 +20,7 @@ Step-by-step images procedure can be view at
 To install the Fuzzy Delphi module in [Jamovi](https://www.jamovi.org/download.html), follow these steps:
 
 1. Click on the “+” icon in the top-right corner of Jamovi to access the module installation options.
-2. Choose the Jamovi library from the menu that opens. OR download from [Here](https://github.com/lerlerchan/FuzzyDelphiJmv/blob/main/FuzzyDelphiJmv_0.0.0.jmo)
+2. Choose the Jamovi library from the menu that opens. OR download from [Here](https://github.com/lerlerchan/FuzzyDelphiJmv/blob/main/FuzzyDelphiJmv_1.0.0.jmo)
 
 3. In the window that appears, click on “Available” (located at the top-middle).
 4. Browse through the list of modules and click “INSTALL” for the Fuzzy Delphi module or any other module you’d like to use.
@@ -46,6 +46,13 @@ Here are some simple ways in which you can contribute (in the increasing order o
 - Raise issues about bugs or wanted features
 - Review code
 - Add new functionality
+
+## Issues we are solving
+1. column header logic issue
+2. bump chart for new ranking
+3. cell highlighting function for fuzzy value more than 2.0
+4. cell highlighting function for deffuzification less than 0.5
+5. cell highlighting function for % <75%
 
 ## License
 
