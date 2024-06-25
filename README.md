@@ -28,6 +28,11 @@ To install the Fuzzy Delphi module in [Jamovi](https://www.jamovi.org/download.h
 Once installed, you’ll be able to utilize the Fuzzy Delphi module for your
 research needs and customize it according to your preferences
 
+### Demonstration Video
+https://github.com/lerlerchan/FuzzyDelphiJmv/assets/35757415/18fecf3e-896e-471d-b6e2-f104d035a70a
+
+[![Watch the video](https://img.youtube.com/vi/)](https://www.youtube.com/embed/p-URv-m6NI0)
+
 ### Important Notes:
 1. Name all your data header in "Item<number>". For Example: Item1, Item2,....
 2. Sample data in .csv to experience can be download from [Here](https://github.com/lerlerchan/FuzzyDelphiJmv/tree/main/sampleData)
