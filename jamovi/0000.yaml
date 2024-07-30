@@ -5,7 +5,6 @@ version: 1.0.1
 jms: '1.0'
 authors:
   - Ler-Kuan Chan
-  - Southern University College
 maintainer: LerLer Chan <lkchan@sc.edu.my>
 date: '2024-06-25'
 type: R
