@@ -1,20 +1,34 @@
 ---
 title: Fuzzy Delphi Jamovi Module
 name: FuzzyDelphiJmv
-version: 1.0.0
+version: 1.0.1
 jms: '1.0'
 authors:
   - Ler-Kuan Chan
-maintainer: The package maintainer <lkchan@sc.edu.my>
+  - Southern University College
+maintainer: LerLer Chan <lkchan@sc.edu.my>
 date: '2024-06-25'
 type: R
-description: 'Do Duzzy Delphi Analysis in Jamovi'
+description: Do Duzzy Delphi Analysis in Jamovi
 analyses:
   - title: Fuzzy Delphi Method
     name: FuzzyDelphiMethod
     ns: FuzzyDelphiJmv
-    menuGroup: FuzzyDelpiJmv
+    menuGroup: Fuzzy Delphi
     menuTitle: Fuzzy Delphi Method
+datasets:
+  - name: Likert5
+    path: likert5.csv
+    description: Expert consensus data on a 5-point Likert scale
+    tags:
+      - 5-point Likert scale
+      - 
+  - name: Likert7
+    path: likert7.csv
+    description: Expert consensus data on a 7-point Likert scale
+    tags:
+      - 7-point Likert scale
+      - 
 usesNative: true
 minApp: 1.0.8
 

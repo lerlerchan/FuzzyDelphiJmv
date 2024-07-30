@@ -1,8 +1,8 @@
 ---
 name:  FuzzyDelphiMethod
 title: Fuzzy Delphi Method
-menuGroup: FuzzyDelpiJmv
-version: '1.0.0'
+menuGroup: Fuzzy Delphi
+version: '1.0.1'
 jas: '1.2'
 
 options:

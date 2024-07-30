@@ -1,7 +1,7 @@
 Package: FuzzyDelphiJmv
 Type: Package
 Title: Fuzzy Delphi Method on Jamovi
-Version: 1.0.0
+Version: 1.0.1
 Author: LerLer Chan
 Maintainer: The package maintainer <lkchan@sc.edu.my>
 Description: Fuzzy Delphi Method module on Jamovi, opensource statistical software

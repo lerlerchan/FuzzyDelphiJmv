@@ -54,6 +54,15 @@ Here are some simple ways in which you can contribute (in the increasing order o
 4. cell highlighting function for deffuzification less than 0.5
 5. cell highlighting function for % <75%
 
+## Issues solved
+| Date | Issue Description | Remark |
+|----------|----------|----------|
+| 30 Jul 2024    | Menu group title is updated   | as per Jamovi suggest   |
+|     | Version no is updated   | as per Jamovi suggest   |
+|     | Update dataset info in 0000.yaml  | as per Jamovi suggest   |
+| Row 4    | Data 7   | Data 8   |
+
+
 ## License
 
 MIT License till 27 April 2024

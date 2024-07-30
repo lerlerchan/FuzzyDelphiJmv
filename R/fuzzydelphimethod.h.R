@@ -99,7 +99,7 @@ FuzzyDelphiMethodBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Cl
             super$initialize(
                 package = "FuzzyDelphiJmv",
                 name = "FuzzyDelphiMethod",
-                version = c(1,0,0),
+                version = c(1,0,1),
                 options = options,
                 results = FuzzyDelphiMethodResults$new(options=options),
                 data = data,
