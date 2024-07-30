@@ -16,19 +16,6 @@ analyses:
     ns: FuzzyDelphiJmv
     menuGroup: Fuzzy Delphi
     menuTitle: Fuzzy Delphi Method
-datasets:
-  - name: Likert5
-    path: likert5.csv
-    description: Expert consensus data on a 5-point Likert scale
-    tags:
-      - 5-point Likert scale
-      - 
-  - name: Likert7
-    path: likert7.csv
-    description: Expert consensus data on a 7-point Likert scale
-    tags:
-      - 7-point Likert scale
-      - 
 usesNative: true
 minApp: 1.0.8
 

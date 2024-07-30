@@ -6,6 +6,13 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
     inherit = FuzzyDelphiMethodBase,
     private = list(
         .init = function() {
+            groupVarName <- self$options$group
+            depVarNames <- self$options$vars
+            varNames <- c(groupVarName, depVarNames)
+            
+            if (is.null(groupVarName) || length(depVarNames) == 0)
+              return()
+          
             table1 <- self$results$scoreTable
             for (name in self$options$deps) {
               table1$addColumn(name, title=name)
