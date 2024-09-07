@@ -178,7 +178,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
             return(final_df)
           }
           
-          # Example usage with your 'final_result_df' data frame
+          
           result_percentage <- calculate_consensus_percentage(final_result_df)
           
           perCentageDCon <- rowMeans(result_percentage, na.rm = TRUE)
