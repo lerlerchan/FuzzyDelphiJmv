@@ -8,7 +8,7 @@ authors:
 maintainer: The package maintainer <lkchan@sc.edu.my>
 date: '2024-06-25'
 type: R
-description: 'Do Duzzy Delphi Analysis in Jamovi'
+description: Conduct Fuzzy Delphi Analysis in Jamovi
 analyses:
   - title: Fuzzy Delphi Method
     name: FuzzyDelphiMethod

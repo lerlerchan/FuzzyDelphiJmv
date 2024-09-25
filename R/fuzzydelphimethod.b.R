@@ -274,29 +274,29 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               
               for (rowNom in seq_along(colMeansFuzzyScale)) {
                 values <- as.list(colMeansFuzzyScale[rowNom])
-                table1$setRow(rowNo=18, values)
+                table1$setRow(rowNo=28, values)
               }
-              table1$setRow(rowNo=18, list(var="Value d of each item"))
+              table1$setRow(rowNo=28, list(var="Value d of each item"))
               
               for (rowNom in seq_along(result_percentage)) {
                 values <- as.list(result_percentage[rowNom])
-                table1$setRow(rowNo=19, values)
+                table1$setRow(rowNo=29, values)
               }
-              table1$setRow(rowNo=19, list(var="% of expert consensus for each item"))
+              table1$setRow(rowNo=29, list(var="% of expert consensus for each item"))
               
               for (rowNom in seq_along(result_def)) {
                 values <- as.list(result_def[rowNom])
-                table1$setRow(rowNo=20, values)
+                table1$setRow(rowNo=30, values)
               }
-              table1$setRow(rowNo=20, list(var="Defuzzification"))
+              table1$setRow(rowNo=30, list(var="Defuzzification"))
         
               for (rowNom in seq_along(new_ranked_df)){
                 # format(round(new_ranked_df[rowNom], digits=1), nsmall=1)
                 # values <- as.list(format(round(new_ranked_df[rowNom], digits=1), nsmall=1))
                 values <- as.list(new_ranked_df[rowNom])
-                table1$setRow(rowNo=21, values)
+                table1$setRow(rowNo=31, values)
               }
-              table1$setRow(rowNo=21, list(var="Item ranking"))
+              table1$setRow(rowNo=31, list(var="Item ranking"))
               
              # self$results$text$setContent(colMeansFuzzyScale)
               
