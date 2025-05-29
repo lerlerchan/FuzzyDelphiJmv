@@ -28,7 +28,7 @@ To develop a flexible fuzzy Delphi module for the Jamovi statistical analysis pl
 Step-by-step images procedure can be view at
 [Here](https://github.com/lerlerchan/FuzzyDelphiJmv/blob/main/tutorial/Installation_Procedure.pdf)
 
-To install the Fuzzy Delphi module in [Jamovi](https://www.jamovi.org/download.html), follow these steps:
+To install the Fuzzy Delphi module in [Jamovi](https://www.jamovi.org/download.html)  / [Jamovi v2.3.28](https://www.manageengine.com/products/desktop-central/software-installation/silent_install_Jamovi-(x64)-(2.3.28.0).html), follow these steps:
 
 1. Click on the “+” icon in the top-right corner of Jamovi to access the module installation options.
 2. Choose the Jamovi library from the menu that opens. OR download from [Here](https://github.com/lerlerchan/FuzzyDelphiJmv/blob/main/FuzzyDelphiJmv_1.0.0.jmo)
