@@ -8,6 +8,7 @@ Paper link: Chan , L.-K., Tan , S. K., & Noor Fatihah, B. M. (2025). FuzzyDelphi
 
 ### References
 Please cite the following:
+
 [1] Chan , L.K., Tan , S. K., & Noor Fatihah, B. M. (2025). FuzzyDelphiJmv: Jamovi Module for Fuzzy Delphi Module. Foundations and Trends ® in Information Systems, 11(1), 24–30. [https://fntis-journal.org/wp-content/uploads/FnTIS-2025-01-02.pdf](https://fntis-journal.org/wp-content/uploads/FnTIS-2025-01-02.pdf)
 
 [2] Chan, LK (2024) FuzzyDelphiJmv (Version 1.0) [Computer software]. Retrieved from
