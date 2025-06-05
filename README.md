@@ -24,10 +24,10 @@ N. A. M. Saffie, N. M. Shukor and K. A. Rasmani, "Fuzzy delphi method: Issues an
 ## Project Aim
 To develop a flexible fuzzy Delphi module for the Jamovi statistical analysis platform that allows users to customize and refine the Delphi technique according to their own research needs and preferences.
 
-## Module Installer for Different Jamovi version
+## Module Installer for Different Jamovi Solid version
 
-Jamovi version 2.3.28: 
-Jamovi version 2.6.26: 
+Jamovi version 2.3.28: [module](https://github.com/lerlerchan/FuzzyDelphiJmv/blob/main/version/FuzzyDelphiJmv_1.2.3.jmo)
+Jamovi version 2.6.26: [module](https://github.com/lerlerchan/FuzzyDelphiJmv/blob/main/FuzzyDelphiJmv_1.0.0.jmo)
 
 ## Installation
 Step-by-step images procedure can be view at
