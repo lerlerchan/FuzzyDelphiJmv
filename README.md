@@ -27,6 +27,7 @@ To develop a flexible fuzzy Delphi module for the Jamovi statistical analysis pl
 ## Module Installer for Different Jamovi Solid version
 
 Jamovi version 2.3.28: [module](https://github.com/lerlerchan/FuzzyDelphiJmv/blob/main/version/FuzzyDelphiJmv_1.2.3.jmo)
+
 Jamovi version 2.6.26: [module](https://github.com/lerlerchan/FuzzyDelphiJmv/blob/main/FuzzyDelphiJmv_1.0.0.jmo)
 
 ## Installation
