@@ -15,6 +15,7 @@ analyses:
     ns: FuzzyDelphiJmv
     menuGroup: FuzzyDelpiJmv
     menuTitle: Fuzzy Delphi Method
+    category: analyses
 usesNative: true
 minApp: 1.0.8
 
