@@ -94,41 +94,41 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
             return(d)
           }
 
-          
-          # Number of items
-          num_items <- ncol(result_df) / 3  # Assuming each item has three columns (m1, m2, m3)
-          
+
+          # Get the actual column names selected by user
+          selected_cols <- self$options$deps
+
           # Initialize an empty list to store the results
           result_list <- list()
-          
-          # Loop through each item
-          for (item_num in 1:num_items) {
-            # Create column names dynamically
-            item_col_names <- paste("Item", item_num, sep = "")
-            #print(item_col_names)
-            
+
+          # Loop through each selected column
+          for (item_num in seq_along(selected_cols)) {
+            # Use the actual column name
+            item_col_name <- selected_cols[[item_num]]
+            #print(item_col_name)
+
             # Subset the data frame for the current item
-            subset_df <- result_df[, grep(item_col_names, names(result_df))]
+            subset_df <- result_df[, grep(paste0("^", item_col_name, "\\."), names(result_df))]
 
             # Calculate the column means for the current item
             col_means <- colMeans(subset_df, na.rm = TRUE)
             #print(col_means)
-            
+
             # Apply the fuzzyScale function to each row of subset_df
             result <- apply(subset_df, 1, function(row) {
-              fuzzyScale(row[paste(item_col_names, "m1",sep=".")],
-                         row[paste(item_col_names, "m2",sep=".")],
-                         row[paste(item_col_names, "m3",sep=".")],
+              fuzzyScale(row[paste(item_col_name, "m1",sep=".")],
+                         row[paste(item_col_name, "m2",sep=".")],
+                         row[paste(item_col_name, "m3",sep=".")],
                          col_means[1], col_means[2], col_means[3])
             })
             #print(result)
-            
+
             # Create a new data frame with the result and set column name dynamically
             result_df_item <- data.frame(Value = result)
-            
-            # Rename the column to the dynamically created name
-            names(result_df_item)[1] <- item_col_names
-            
+
+            # Rename the column to the actual column name
+            names(result_df_item)[1] <- item_col_name
+
             # Append the result to the list
             result_list[[item_num]] <- result_df_item
           }
@@ -225,7 +225,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               }
 
               result_def <- data.frame(result_deflist)
-              colnames(result_def) <- paste("Item", seq_along(result_deflist), sep = "")
+              colnames(result_def) <- selected_cols
 
           
               # Assuming result_df is your dataframe
@@ -256,7 +256,7 @@ FuzzyDelphiMethodClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6C
               row.names(new_ranked_df) <- NULL
 
               # rename column names
-              colnames(new_ranked_df) <- paste("Item", 1:ncol(new_ranked_df), sep = "")
+              colnames(new_ranked_df) <- selected_cols
               # Remove the first row from the dataframe
               new_ranked_df <- new_ranked_df[-1, ]
 

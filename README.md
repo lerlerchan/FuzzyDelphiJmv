@@ -28,7 +28,10 @@ To develop a flexible fuzzy Delphi module for the Jamovi statistical analysis pl
 
 Jamovi version 2.3.28: [module](https://github.com/lerlerchan/FuzzyDelphiJmv/blob/main/version/FuzzyDelphiJmv_1.2.3.jmo)
 
-Jamovi version 2.6.26: [module](https://github.com/lerlerchan/FuzzyDelphiJmv/blob/main/FuzzyDelphiJmv_1.0.0.jmo)
+Jamovi version 2.6.26:
+[module]-- no longer supported 
+
+Jamovi version 2.6.44: [module](https://github.com/lerlerchan/FuzzyDelphiJmv/blob/main/FuzzyDelphiJmv_1.2.4.jmo)
 
 ## Installation
 Step-by-step images procedure can be view at
@@ -65,7 +68,7 @@ Here are some simple ways in which you can contribute (in the increasing order o
 - Add new functionality
 
 ## Issues we are solving
-1. column header logic issue
+1. column header logic issue - solved on 1 Nov 2025
 2. bump chart for new ranking
 3. cell highlighting function for fuzzy value more than 2.0
 4. cell highlighting function for deffuzification less than 0.5
